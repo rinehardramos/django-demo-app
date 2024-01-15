@@ -1,28 +1,65 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Inventory List</h2>
-<button type="button"><a href="{% url 'create_item' %}">Add Item</a></button>
+<section class="header">
+  <h1>CVE Database</h1>
+</section>
+
+<div class='container'>
+  <div class="align-left"><h2>Records</h2></div>
+
+{% if user.is_authenticated %}
+<div class="align-right"><h2> User: {{ user.username }}</h2></div>
+{% else %}
+<div class="align-right"><p>You are not logged in</p></div>
+<div class="align-right"><a href="{% url 'login' %}">Log In</a></div>
+{% endif %}
+</div>
+<div class="container">
+  <div class="align-left"><button type="button" style="float: left;"><a href="{% url 'create_item' %}">Add Item</a></button></div>
+ 
+  <div class="align-left"></div><button type="button" style="float: right;"><a href="{% url 'logout' %}">Logout</a></button></div>
+
+
+<form class="d-flex" role="search" method="POST">
+  {% csrf_token %}
+  
+  <div class="align-center">
+  <input
+    class="search"
+    type="search"
+    placeholder="Search"
+    name="search_query"
+    required aria-label="Search"
+  >
+</div>
+<div class="align-center">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</div>
+</form>
+</div>
+
+<br>
 <table>
   <tr>
     <th>Title</th>
     <th>Description</th>
-    <th>Actions</th>
     <th>Completed</th>
     <th>Due Date</th>
+    <th>Actions</th>
   </tr>
   {% for item in inventory %}
   <tr>
     <td>{{ item.title }}</td>
     <td>{{ item.description }}</td>
     <td>
-      <button type="button" id="action-1"><a href="{% url 'update_item' item.pk %}">Update</a></button>
-      <button type="button" id="action-2"><a href="{% url 'delete_item' item.pk %}">Delete</a></button>
-    </td>
-    <td>
       {{ item.completed}}
     </td>
     <td>{{ item.due_date}}</td>
+    <td>
+      <button type="button" id="action-1"><a href="{% url 'update_item' item.pk %}">Update</a></button>
+      <button type="button" id="action-2"><a href="{% url 'delete_item' item.pk %}">Delete</a></button>
+    </td>
   </tr>
   {% empty %}
   <tr>

@@ -44,7 +44,7 @@ button[type="submit"]:hover {
 } 
 
 button[type="button"] {
-    background-color: #4caf50;
+    background-color: #020202;
     border: none;
     border-radius: 5px;
     margin-left: 5px;
@@ -90,3 +90,28 @@ a {
 #action-2{
     background-color: #af4c4c;
 }
+
+.container{ width:100%; }    
+.align-left{ float: left;width:50%; text-align: left;}
+.align-right{ float: right;width:50%; text-align: right; }
+.align-right{ float: center;width:50%; text-align: right; }
+
+h1 {
+    font-size: 2.8em;
+    padding: 10px 0;
+    font-weight: 800;
+  }
+
+  .header {
+    width: 100%;
+    padding:30px 0;
+    text-align: center;
+    background: #33cccc;
+    color: white;
+  }
+
+  .search {
+    width: 25%;
+    height: 30px;
+  
+  }
